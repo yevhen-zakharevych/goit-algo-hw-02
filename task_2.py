@@ -1,8 +1,9 @@
 from collections import deque
 
 
-def is_palindrome(word):
-    d = deque(word)
+def is_palindrome(string):
+    prepared_str = string.replace(" ", "").lower()
+    d = deque(prepared_str)
 
     while len(d) > 2:
         if d.popleft() != d.pop():
@@ -13,7 +14,7 @@ def is_palindrome(word):
 def main():
     try:
         while True:
-            user_input = input("Enter a word: ")
+            user_input = input("Enter a string: ")
 
             if is_palindrome(user_input):
                 print(f"{user_input} is a palindrome")

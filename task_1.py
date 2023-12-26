@@ -3,7 +3,8 @@ import random
 from time import sleep
 
 
-def generate_request(q, el):
+def generate_request(q, unique_id):
+    el = "element_" + str(unique_id)
     q.put(el)
 
 
@@ -18,13 +19,15 @@ def process_request(q):
 
 def main():
     try:
+        counter = 0
+        queue = Queue()
+
         while True:
-            queue = Queue()
-
             for i in range(random.randrange(10)):
-                generate_request(queue, "element_" + str(i))
+                generate_request(queue, counter)
+                counter += 1
 
-            for i in range(random.randrange(10)):
+            for i in range(random.randrange(11)):
                 process_request(queue)
                 sleep(0.5)
 
